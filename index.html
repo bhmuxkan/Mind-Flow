@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mind Flow - A minimalist Pomodoro timer for focused work and productive breaks">
+    <meta name="theme-color" content="#fdfbfb">
+    <title>Mind • Flow</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>⏱️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600&family=Inter:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header fade-in">
+            <h1 class="logo" role="banner">Mind • Flow</h1>
+            <p class="tagline">single-tasking is the new multitasking</p>
+        </header>
+
+        <main class="main-card fade-in">
+            <div class="timer-section" role="timer">
+                <div class="timer-display" id="timerDisplay" aria-label="Timer display">25:00</div>
+                <div class="session-type" id="sessionType" aria-live="polite">Focus Session</div>
+            </div>
+
+            <div class="controls" role="group" aria-label="Timer controls">
+                <button class="btn btn-primary" id="startBtn" aria-label="Start timer">Begin</button>
+                <button class="btn btn-secondary" id="pauseBtn" disabled aria-label="Pause timer">Pause</button>
+                <button class="btn btn-secondary" id="resetBtn" aria-label="Reset timer">Reset</button>
+                <button class="btn btn-secondary settings-btn" id="settingsBtn" aria-label="Open settings">⚙️</button>
+            </div>
+        </main>
+    </div>
+
+    <div class="settings-modal" id="settingsModal" role="dialog" aria-labelledby="settingsTitle">
+        <div class="settings-content">
+            <h2 id="settingsTitle">Timer Settings</h2>
+            <div class="settings-group">
+                <label for="focusLength">Focus Session (minutes)</label>
+                <input type="number" id="focusLength" min="1" max="60" value="25">
+            </div>
+            <div class="settings-group">
+                <label for="breakLength">Short Break (minutes)</label>
+                <input type="number" id="breakLength" min="1" max="30" value="5">
+            </div>
+            <div class="settings-group">
+                <label for="longBreakLength">Long Break (minutes)</label>
+                <input type="number" id="longBreakLength" min="5" max="45" value="15">
+            </div>
+            <div class="settings-group">
+                <label for="sessionSelect">Session Type</label>
+                <select id="sessionSelect" class="settings-select">
+                    <option value="focus">Focus Session</option>
+                    <option value="shortBreak">Short Break</option>
+                    <option value="longBreak">Long Break</option>
+                </select>
+            </div>
+            <div class="settings-group">
+                <label for="themeSelect">Color Theme</label>
+                <select id="themeSelect" class="theme-select">
+                    <option value="default">Default Pink</option>
+                    <option value="blue">Ocean Blue</option>
+                    <option value="green">Forest Green</option>
+                    <option value="purple">Royal Purple</option>
+                </select>
+            </div>
+            <div class="settings-actions">
+                <button class="btn btn-secondary" id="cancelSettings">Cancel</button>
+                <button class="btn btn-primary" id="saveSettings">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <noscript>
+        <div class="noscript-message">
+            This app requires JavaScript to function. Please enable JavaScript to use the timer.
+        </div>
+    </noscript>
+
+    <div id="notification" class="notification" role="alert" aria-live="polite"></div>
+    <script src="script.js"></script>
+</body>
+</html>
